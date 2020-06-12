@@ -1,8 +1,8 @@
-import 'package:base/widgets/form.container.dart';
+import 'package:base/widgets/form2.conatiner.dart';
 import 'package:base/widgets/sign.up.dart';
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatelessWidget {
+class CreateAccountage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,7 +29,7 @@ class LoginPage extends StatelessWidget {
                       height: 200,
                       fit: BoxFit.contain),
                 ),
-                FormContainer(),
+                Form2Container(),
                 Padding(
                   padding: EdgeInsets.only(top: 30),
                   child: InkWell(
