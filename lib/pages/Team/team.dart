@@ -1,5 +1,15 @@
 import 'package:flutter/material.dart';
 
+class Item {
+  final String title;
+  final String catagory;
+
+  Item({
+    this.title,
+    this.catagory,
+  });
+}
+
 class TeamPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -15,32 +25,65 @@ class TeamPage extends StatelessWidget {
           ),
         ),
       ),
-      body: Container(
-        height: 120.0,
-        margin: EdgeInsets.symmetric(
-          vertical: 16.0,
-          horizontal: 24.0,
-        ),
-        child: new Stack(
-          children: <Widget>[
-            Container(
-              height: 124.0,
-              decoration: new BoxDecoration(
-                color: new Color(0xFFBBDEFB),
-                shape: BoxShape.rectangle,
-                borderRadius: new BorderRadius.circular(8.0),
-                boxShadow: <BoxShadow>[
-                  new BoxShadow(
-                    color: Colors.black12,
-                    blurRadius: 10.0,
-                    offset: new Offset(0.0, 10.0),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
+      body: Lists(),
+    );
+  }
+}
+
+class Lists extends StatelessWidget {
+  final List<Item> _data = [
+    Item(
+      title: 'Turma 1',
+      catagory: "15 Alunos",
+    ),
+    Item(
+      title: 'Turma 2',
+      catagory: "10 Alunos",
+    ),
+    Item(
+      title: 'Turma 3',
+      catagory: "5 Alunos",
+    )
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      padding: EdgeInsets.all(6),
+      itemCount: _data.length,
+      itemBuilder: (BuildContext context, int index) {
+        Item item = _data[index];
+        return Card(
+          elevation: 3,
+          child: Row(
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      item.title,
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.w700,
+                          fontSize: 17),
+                    ),
+                    Text(
+                      item.catagory,
+                      style: TextStyle(fontSize: 14, color: Colors.black87),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
+        );
+      },
     );
   }
 }
