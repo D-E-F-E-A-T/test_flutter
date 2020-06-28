@@ -1,23 +1,30 @@
-import 'package:base/route/routing_constants.dart';
+import 'package:base/blocs/login_bloc.dart';
+import 'package:base/routes/routing_constants.dart';
+import 'package:base/ui/pages/login/widgets/field.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {
+  LoginBloc _loginBloc = LoginBloc();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        height: MediaQuery.of(context).size.height,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          image: DecorationImage(
-            colorFilter: ColorFilter.mode(
-                Colors.black.withOpacity(0.08), BlendMode.dstATop),
-            image: NetworkImage(
-                'https://image.freepik.com/vetores-gratis/tempo-para-trabalhar-o-conjunto-de-icones-decorativos_98292-7098.jpg'),
-            fit: BoxFit.cover,
+      body: SingleChildScrollView(
+        child: Container(
+          height: MediaQuery.of(context).size.height,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            image: DecorationImage(
+              colorFilter: ColorFilter.mode(
+                Colors.black.withOpacity(0.08),
+                BlendMode.dstATop,
+              ),
+              image: NetworkImage(
+                'https://image.freepik.com/vetores-gratis/tempo-para-trabalhar-o-conjunto-de-icones-decorativos_98292-7098.jpg',
+              ),
+              fit: BoxFit.cover,
+            ),
           ),
-        ),
-        child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
               Container(
@@ -30,83 +37,73 @@ class LoginPage extends StatelessWidget {
                   ),
                 ),
               ),
+              Field(
+                labelText: "E-mail *",
+                hintText: "teste@teste.com",
+                onChange: _loginBloc.changeEmail,
+                stream: _loginBloc.email,
+                obscureText: false,
+              ),
+              Divider(
+                height: 24.0,
+              ),
+              Field(
+                labelText: "Senha *",
+                hintText: "*********",
+                onChange: _loginBloc.changePassword,
+                stream: _loginBloc.password,
+                obscureText: true,
+              ),
+              Divider(
+                height: 24.0,
+              ),
               Container(
                 width: MediaQuery.of(context).size.width,
                 margin:
-                    const EdgeInsets.only(left: 40.0, right: 40.0, top: 10.0),
+                    const EdgeInsets.only(left: 30.0, right: 30.0, top: 20.0),
                 alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  border: Border(
-                    bottom: BorderSide(
-                        color: Colors.blueAccent,
-                        width: 0.5,
-                        style: BorderStyle.solid),
-                  ),
-                ),
-                padding: const EdgeInsets.only(left: 0.0, right: 10.0),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Expanded(
-                      child: TextField(
-                        obscureText: true,
-                        textAlign: TextAlign.left,
-                        decoration: InputDecoration(
-                          labelText: "E-mail",
-                          border: InputBorder.none,
-                          hintText: 'teste@teste.com',
-                          hintStyle: TextStyle(color: Colors.grey),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Divider(
-                height: 24.0,
-              ),
-              Container(
-                width: MediaQuery.of(context).size.width,
-                margin: const EdgeInsets.only(
-                  left: 40.0,
-                  right: 40.0,
-                  top: 10.0,
-                ),
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  border: Border(
-                    bottom: BorderSide(
-                        color: Colors.blueAccent,
-                        width: 0.5,
-                        style: BorderStyle.solid),
-                  ),
-                ),
-                padding: const EdgeInsets.only(
-                  left: 0.0,
-                  right: 10.0,
-                ),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Expanded(
-                      child: TextFormField(
-                        obscureText: true,
-                        textAlign: TextAlign.left,
-                        decoration: InputDecoration(
-                          labelText: "Senha",
-                          border: InputBorder.none,
-                          hintText: '*********',
-                          hintStyle: TextStyle(color: Colors.grey),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Divider(
-                height: 24.0,
+                child: StreamBuilder<bool>(
+                    stream: _loginBloc.outSubmitValid,
+                    builder: (context, snapshot) {
+                      return Row(
+                        children: <Widget>[
+                          Expanded(
+                            child: FlatButton(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30.0),
+                              ),
+                              disabledColor: Colors.blueGrey[300],
+                              color: Colors.blueAccent,
+                              onPressed: snapshot.data != null && snapshot.data
+                                  ? () => Navigator.pushNamed(
+                                      context, TeamPageRoute)
+                                  : null,
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 20.0,
+                                  horizontal: 20.0,
+                                ),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Expanded(
+                                      child: Text(
+                                        "Entrar",
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      );
+                    }),
               ),
               Container(
                 width: MediaQuery.of(context).size.width,
@@ -118,46 +115,7 @@ class LoginPage extends StatelessWidget {
                     Expanded(
                       child: FlatButton(
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30.0),
-                        ),
-                        color: Colors.blueAccent,
-                        onPressed: () => Navigator.pushNamed(context, TeamPageRoute),
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 20.0,
-                            horizontal: 20.0,
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Expanded(
-                                child: Text(
-                                  "Entrar",
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Container(
-                width: MediaQuery.of(context).size.width,
-                margin:
-                    const EdgeInsets.only(left: 30.0, right: 30.0, top: 20.0),
-                alignment: Alignment.center,
-                child: Row(
-                  children: <Widget>[
-                    Expanded(
-                      child: FlatButton(
-                        shape: new RoundedRectangleBorder(
-                            borderRadius: new BorderRadius.circular(30.0)),
+                            borderRadius: BorderRadius.circular(30.0)),
                         color: Colors.transparent,
                         child: Container(
                           padding: const EdgeInsets.only(left: 20.0),
@@ -171,7 +129,8 @@ class LoginPage extends StatelessWidget {
                             ),
                           ),
                         ),
-                        onPressed: () => Navigator.pushNamed(context, CreateAccountPageRoute),
+                        onPressed: () => Navigator.pushNamed(
+                            context, CreateAccountPageRoute),
                       ),
                     ),
                   ],
