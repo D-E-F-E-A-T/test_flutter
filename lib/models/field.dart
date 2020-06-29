@@ -1,3 +1,0 @@
-class Field {
-  bool valid;
-}

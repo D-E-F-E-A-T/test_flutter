@@ -1,4 +1,5 @@
-import 'package:base/validators/login_validator.dart';
+
+import 'package:base/app/blocs/validators/login_validator.dart';
 import 'package:rxdart/rxdart.dart';
 
 class LoginBloc with LoginValidator {

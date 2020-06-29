@@ -1,6 +1,6 @@
-import 'package:base/ui/pages/create_account/create_account_page.dart';
-import 'package:base/ui/pages/login/login_page.dart';
-import 'package:base/ui/pages/team/team_page.dart';
+import 'package:base/app/ui/pages/create_account/create_account_page.dart';
+import 'package:base/app/ui/pages/login/login_page.dart';
+import 'package:base/app/ui/pages/team/team_page.dart';
 import 'package:base/routes/routing_constants.dart';
 import 'package:flutter/material.dart';
 

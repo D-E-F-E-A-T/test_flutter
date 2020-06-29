@@ -1,0 +1,3 @@
+class FieldModel {
+  bool valid;
+}

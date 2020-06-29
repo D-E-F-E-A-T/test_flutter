@@ -1,10 +1,10 @@
-import 'package:base/blocs/login_bloc.dart';
+import 'package:base/app/blocs/login_bloc.dart';
+import 'package:base/app/ui/pages/login/widgets/field.dart';
 import 'package:base/routes/routing_constants.dart';
-import 'package:base/ui/pages/login/widgets/field.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {
-  LoginBloc _loginBloc = LoginBloc();
+  final LoginBloc _loginBloc = LoginBloc();
 
   @override
   Widget build(BuildContext context) {
