@@ -1,6 +1,6 @@
 import 'package:base/app/blocs/login_bloc.dart';
 import 'package:base/app/ui/pages/login/widgets/field.dart';
-import 'package:base/routes/routing_constants.dart';
+import 'package:base/app/routes/routing_constants.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {

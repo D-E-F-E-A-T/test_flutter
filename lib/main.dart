@@ -1,5 +1,5 @@
+import 'package:base/app/routes/router.dart';
 import 'package:base/ui/pages/Login/login_page.dart';
-import 'package:base/routes/router.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());

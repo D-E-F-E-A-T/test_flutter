@@ -1,4 +1,4 @@
-import 'package:base/routes/routing_constants.dart';
+import 'package:base/app/routes/routing_constants.dart';
 import 'package:flutter/material.dart';
 
 class CreateAccountPage extends StatelessWidget {
