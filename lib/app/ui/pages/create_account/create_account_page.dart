@@ -1,8 +1,13 @@
+import 'package:base/app/blocs/create_account_bloc.dart';
 import 'package:base/app/routes/routing_constants.dart';
+import 'package:base/app/ui/widgets/field_widgets.dart';
+import 'package:base/app/ui/widgets/submit_button_widget.dart';
 import 'package:flutter/material.dart';
 
 class CreateAccountPage extends StatelessWidget {
- @override
+  final CreateAccoutnBLoc _createAccoutnBLoc = CreateAccoutnBLoc();
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
@@ -30,206 +35,52 @@ class CreateAccountPage extends StatelessWidget {
                   ),
                 ),
               ),
-              Container(
-                width: MediaQuery.of(context).size.width,
-                margin: const EdgeInsets.only(
-                  left: 40.0,
-                  right: 40.0,
-                  top: 10.0,
-                ),
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  border: Border(
-                    bottom: BorderSide(
-                        color: Colors.blueAccent,
-                        width: 0.5,
-                        style: BorderStyle.solid),
-                  ),
-                ),
-                padding: const EdgeInsets.only(
-                  left: 0.0,
-                  right: 10.0,
-                ),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Expanded(
-                      child: TextFormField(
-                        obscureText: false,
-                        textAlign: TextAlign.left,
-                        decoration: InputDecoration(
-                          labelText: "Nome",
-                          border: InputBorder.none,
-                          hintText: 'João',
-                          hintStyle: TextStyle(color: Colors.grey),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+              FormFieldWidget(
+                labelText: "Nome *",
+                hintText: "João",
+                onChange: _createAccoutnBLoc.changeName,
+                stream: _createAccoutnBLoc.name,
+                obscureText: false,
               ),
               Divider(
                 height: 24.0,
               ),
-              Container(
-                width: MediaQuery.of(context).size.width,
-                margin: const EdgeInsets.only(
-                  left: 40.0,
-                  right: 40.0,
-                  top: 10.0,
-                ),
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  border: Border(
-                    bottom: BorderSide(
-                        color: Colors.blueAccent,
-                        width: 0.5,
-                        style: BorderStyle.solid),
-                  ),
-                ),
-                padding: const EdgeInsets.only(
-                  left: 0.0,
-                  right: 10.0,
-                ),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Expanded(
-                      child: TextFormField(
-                        obscureText: false,
-                        textAlign: TextAlign.left,
-                        decoration: InputDecoration(
-                          labelText: "Sobrenome",
-                          border: InputBorder.none,
-                          hintText: 'Silva',
-                          hintStyle: TextStyle(color: Colors.grey),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+              FormFieldWidget(
+                labelText: "Sobrenome *",
+                hintText: "da Silva",
+                onChange: _createAccoutnBLoc.changeSurname,
+                stream: _createAccoutnBLoc.surname,
+                obscureText: false,
               ),
               Divider(
                 height: 24.0,
               ),
-              Container(
-                width: MediaQuery.of(context).size.width,
-                margin:
-                    const EdgeInsets.only(left: 40.0, right: 40.0, top: 10.0),
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  border: Border(
-                    bottom: BorderSide(
-                        color: Colors.blueAccent,
-                        width: 0.5,
-                        style: BorderStyle.solid),
-                  ),
-                ),
-                padding: const EdgeInsets.only(left: 0.0, right: 10.0),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Expanded(
-                      child: TextField(
-                        obscureText: true,
-                        textAlign: TextAlign.left,
-                        decoration: InputDecoration(
-                          labelText: "E-mail",
-                          border: InputBorder.none,
-                          hintText: 'teste@teste.com',
-                          hintStyle: TextStyle(color: Colors.grey),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+              FormFieldWidget(
+                labelText: "E-mail *",
+                hintText: "teste@teste.com",
+                onChange: _createAccoutnBLoc.changeEmail,
+                stream: _createAccoutnBLoc.email,
+                obscureText: false,
               ),
               Divider(
                 height: 24.0,
               ),
-              Container(
-                width: MediaQuery.of(context).size.width,
-                margin: const EdgeInsets.only(
-                  left: 40.0,
-                  right: 40.0,
-                  top: 10.0,
-                ),
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  border: Border(
-                    bottom: BorderSide(
-                        color: Colors.blueAccent,
-                        width: 0.5,
-                        style: BorderStyle.solid),
-                  ),
-                ),
-                padding: const EdgeInsets.only(
-                  left: 0.0,
-                  right: 10.0,
-                ),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Expanded(
-                      child: TextFormField(
-                        obscureText: true,
-                        textAlign: TextAlign.left,
-                        decoration: InputDecoration(
-                          labelText: "Senha",
-                          border: InputBorder.none,
-                          hintText: '*********',
-                          hintStyle: TextStyle(color: Colors.grey),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+              FormFieldWidget(
+                labelText: "Senha *",
+                hintText: "********",
+                onChange: _createAccoutnBLoc.changePassword,
+                stream: _createAccoutnBLoc.password,
+                obscureText: true,
               ),
               Divider(
                 height: 24.0,
               ),
-              Container(
-                width: MediaQuery.of(context).size.width,
-                margin: const EdgeInsets.only(
-                  left: 40.0,
-                  right: 40.0,
-                  top: 10.0,
-                ),
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  border: Border(
-                    bottom: BorderSide(
-                        color: Colors.blueAccent,
-                        width: 0.5,
-                        style: BorderStyle.solid),
-                  ),
-                ),
-                padding: const EdgeInsets.only(
-                  left: 0.0,
-                  right: 10.0,
-                ),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Expanded(
-                      child: TextFormField(
-                        obscureText: true,
-                        textAlign: TextAlign.left,
-                        decoration: InputDecoration(
-                          labelText: "Confirmação da Senha",
-                          border: InputBorder.none,
-                          hintText: '*********',
-                          hintStyle: TextStyle(color: Colors.grey),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+              FormFieldWidget(
+                labelText: "Confirmação de Senha *",
+                hintText: "********",
+                onChange: _createAccoutnBLoc.changeConfirmPassword,
+                stream: _createAccoutnBLoc.confirmPassword,
+                obscureText: true,
               ),
               Divider(
                 height: 24.0,
@@ -239,39 +90,18 @@ class CreateAccountPage extends StatelessWidget {
                 margin:
                     const EdgeInsets.only(left: 30.0, right: 30.0, top: 20.0),
                 alignment: Alignment.center,
-                child: Row(
-                  children: <Widget>[
-                    Expanded(
-                      child: FlatButton(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30.0),
-                        ),
-                        color: Colors.blueAccent,
-                        onPressed: () => Navigator.pushNamed(context, TeamPageRoute),
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 20.0,
-                            horizontal: 20.0,
+                child: StreamBuilder<bool>(
+                    stream: _createAccoutnBLoc.outSubmitValid,
+                    builder: (context, snapshot) {
+                      return Row(
+                        children: <Widget>[
+                          Expanded(
+                            child: SubmitButtonWidget(
+                                onPressed: () {}, disabled: snapshot.data),
                           ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Expanded(
-                                child: Text(
-                                  "Criar Conta",
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+                        ],
+                      );
+                    }),
               ),
               Container(
                 width: MediaQuery.of(context).size.width,
@@ -297,7 +127,8 @@ class CreateAccountPage extends StatelessWidget {
                             ),
                           ),
                         ),
-                        onPressed: () => Navigator.pushNamed(context, LoginPageRoute),
+                        onPressed: () =>
+                            Navigator.pushNamed(context, LoginPageRoute),
                       ),
                     ),
                   ],

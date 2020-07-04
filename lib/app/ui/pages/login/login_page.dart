@@ -1,6 +1,7 @@
 import 'package:base/app/blocs/login_bloc.dart';
-import 'package:base/app/ui/pages/login/widgets/field.dart';
 import 'package:base/app/routes/routing_constants.dart';
+import 'package:base/app/ui/widgets/field_widgets.dart';
+import 'package:base/app/ui/widgets/submit_button_widget.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {
@@ -37,7 +38,7 @@ class LoginPage extends StatelessWidget {
                   ),
                 ),
               ),
-              Field(
+              FormFieldWidget(
                 labelText: "E-mail *",
                 hintText: "teste@teste.com",
                 onChange: _loginBloc.changeEmail,
@@ -47,7 +48,7 @@ class LoginPage extends StatelessWidget {
               Divider(
                 height: 24.0,
               ),
-              Field(
+              FormFieldWidget(
                 labelText: "Senha *",
                 hintText: "*********",
                 onChange: _loginBloc.changePassword,
@@ -63,47 +64,18 @@ class LoginPage extends StatelessWidget {
                     const EdgeInsets.only(left: 30.0, right: 30.0, top: 20.0),
                 alignment: Alignment.center,
                 child: StreamBuilder<bool>(
-                    stream: _loginBloc.outSubmitValid,
-                    builder: (context, snapshot) {
-                      return Row(
-                        children: <Widget>[
-                          Expanded(
-                            child: FlatButton(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(30.0),
-                              ),
-                              disabledColor: Colors.blueGrey[300],
-                              color: Colors.blueAccent,
-                              onPressed: snapshot.data != null && snapshot.data
-                                  ? () => Navigator.pushNamed(
-                                      context, TeamPageRoute)
-                                  : null,
-                              child: Container(
-                                padding: const EdgeInsets.symmetric(
-                                  vertical: 20.0,
-                                  horizontal: 20.0,
-                                ),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: <Widget>[
-                                    Expanded(
-                                      child: Text(
-                                        "Entrar",
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      );
-                    }),
+                  stream: _loginBloc.outSubmitValid,
+                  builder: (context, snapshot) {
+                    return Row(
+                      children: <Widget>[
+                        Expanded(
+                          child: SubmitButtonWidget(
+                              onPressed: () {}, disabled: snapshot.data),
+                        ),
+                      ],
+                    );
+                  },
+                ),
               ),
               Container(
                 width: MediaQuery.of(context).size.width,

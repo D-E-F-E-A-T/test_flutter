@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class Field extends StatelessWidget {
+class FormFieldWidget extends StatelessWidget {
   final String hintText;
   final String labelText;
   final bool obscureText;
   final Function(String) onChange;
   final Stream<String> stream;
 
-  Field({
+  FormFieldWidget({
     @required this.labelText,
     @required this.hintText,
     @required this.onChange,

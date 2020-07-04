@@ -26,6 +26,7 @@ dependencies:
   flutter_swiper: ^1.1.6
   get: ^3.0.1
   rxdart: ^0.24.1
+  validators: ^2.0.0
 
 dev_dependencies:
   flutter_test:
