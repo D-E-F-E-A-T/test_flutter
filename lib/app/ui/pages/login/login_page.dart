@@ -3,6 +3,7 @@ import 'package:base/app/routes/routing_constants.dart';
 import 'package:base/app/ui/widgets/field_widgets.dart';
 import 'package:base/app/ui/widgets/submit_button_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class LoginPage extends StatelessWidget {
   final LoginBloc _loginBloc = LoginBloc();
@@ -70,7 +71,11 @@ class LoginPage extends StatelessWidget {
                       children: <Widget>[
                         Expanded(
                           child: SubmitButtonWidget(
-                              onPressed: () {}, disabled: snapshot.data),
+                            onPressed: () {
+                              Get.toNamed(ClassPageRoute);
+                            },
+                            disabled: snapshot.data,
+                          ),
                         ),
                       ],
                     );
@@ -101,8 +106,7 @@ class LoginPage extends StatelessWidget {
                             ),
                           ),
                         ),
-                        onPressed: () => Navigator.pushNamed(
-                            context, CreateAccountPageRoute),
+                        onPressed: () => Get.toNamed(CreateAccountPageRoute),
                       ),
                     ),
                   ],
