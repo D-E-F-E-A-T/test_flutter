@@ -1,4 +1,6 @@
+import 'package:base/app/routes/routing_constants.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ItemList extends StatelessWidget {
   final String title;
@@ -10,7 +12,7 @@ class ItemList extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        print("Pressionou " + title);
+        Get.toNamed(ActivityPageRoute);
       },
       child: Container(
         padding: const EdgeInsets.only(left: 16, top: 16, bottom: 16),

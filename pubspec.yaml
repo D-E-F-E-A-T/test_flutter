@@ -27,6 +27,7 @@ dependencies:
   get: ^3.0.1
   rxdart: ^0.24.1
   validators: ^2.0.0
+  intl: ^0.16.1
 
 dev_dependencies:
   flutter_test:

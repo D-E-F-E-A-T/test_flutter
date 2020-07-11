@@ -66,7 +66,7 @@ class CreateClassPage extends StatelessWidget {
               labelText: "Tópico",
               stream: _createClassBloc.topic,
               onChanged: _createClassBloc.changeTopic,
-              maxLines: 3,
+              maxLines: null,
             ),
           ],
         ),
